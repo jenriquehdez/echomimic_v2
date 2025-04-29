@@ -1,0 +1,60 @@
+[project]
+name = "echomimic-v2"
+version = "0.1.0"
+description = "Package for Semi-Body Human Animation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "accelerate==1.1.1",
+    "av==13.1.0",
+    "clip",
+    "controlnet-aux==0.0.9",
+    "decord==0.6.0",
+    "diffusers==0.31.0",
+    "einops==0.8.0",
+    "facenet-pytorch>=2.5.3",
+    "ffmpeg-python>=0.2.0",
+    "huggingface-hub==0.26.2",
+    "imageio==2.36.0",
+    "imageio-ffmpeg==0.5.1",
+    "ipython>=8.36.0",
+    "mediapipe>=0.10.21",
+    "mlflow==2.18.0",
+    "moviepy==1.0.3",
+    "numpy==1.26.4",
+    "omegaconf==2.3.0",
+    "onnxruntime-gpu==1.20.1",
+    "open-clip-torch==2.29.0",
+    "opencv-contrib-python==4.10.0.84",
+    "opencv-python>=4.11.0.86",
+    "pillow>=10.2.0,<10.3.0",
+    "scenedetect>=0.6.6",
+    "scikit-image==0.24.0",
+    "scikit-learn==1.5.2",
+    "scipy==1.14.1",
+    "soundfile>=0.13.1",
+    "torch>=2.7.0",
+    "torchao>=0.10.0",
+    "torchaudio>=2.7.0",
+    "torchdiffeq==0.2.5",
+    "torchmetrics>=1.7.1",
+    "torchsde==0.2.6",
+    "torchtyping>=0.1.5",
+    "torchvision>=0.22.0",
+    "tqdm>=4.67.1",
+    "transformers>=4.46.3",
+    "xformers>=0.0.30",
+]
+
+[project.optional-dependencies]
+gradio-app = [
+    "gradio>=5.6.0",
+    "gradio-client>=1.4.3",
+]
+all = [
+    "echomimic-v2[gradio-app]",
+]
+
+[tool.uv.sources]
+clip = { url = "https://github.com/openai/CLIP/archive/d50d76daa670286dd6cacf3bcd80b5e4823fc8e1.zip" }
+echomimic-v2 = { workspace = true }
