@@ -4,7 +4,7 @@ from typing import Any, Dict, Optional
 import torch
 from einops import rearrange
 
-from src.models.attention import TemporalBasicTransformerBlock
+from models.attention import TemporalBasicTransformerBlock
 
 from .attention import BasicTransformerBlock
 
@@ -101,7 +101,7 @@ class ReferenceAttentionControl:
             cross_attention_kwargs: Dict[str, Any] = None,
             class_labels: Optional[torch.LongTensor] = None,
             video_length=None,
-            audio_feature_ratio = 3.0
+            audio_feature_ratio=3.0,
         ):
             if self.use_ada_layer_norm:  # False
                 norm_hidden_states = self.norm1(hidden_states, timestep)
@@ -178,7 +178,9 @@ class ReferenceAttentionControl:
                         hidden_states_c[_uc_mask] = (
                             self.attn1(
                                 norm_hidden_states[_uc_mask],
-                                encoder_hidden_states=norm_hidden_states[_uc_mask], # B * 4096 * 768
+                                encoder_hidden_states=norm_hidden_states[
+                                    _uc_mask
+                                ],  # B * 4096 * 768
                                 attention_mask=attention_mask,
                             )
                             + hidden_states[_uc_mask]
@@ -201,13 +203,13 @@ class ReferenceAttentionControl:
                             hidden_states = (
                                 self.attn2(
                                     norm_hidden_states,
-                                    encoder_hidden_states=audio_cond_fea, # B * 50 * 768，
+                                    encoder_hidden_states=audio_cond_fea,  # B * 50 * 768，
                                     attention_mask=attention_mask,
-                                ) * audio_feature_ratio
+                                )
+                                * audio_feature_ratio
                                 + hidden_states
                             )
                         # print("Audio Cross-Attention max after:", hidden_states.max())
-
 
                     # Feed-forward
                     hidden_states = self.ff(self.norm3(hidden_states)) + hidden_states
