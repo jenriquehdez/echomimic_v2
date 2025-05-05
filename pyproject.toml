@@ -58,3 +58,9 @@ all = [
 [tool.uv.sources]
 clip = { url = "https://github.com/openai/CLIP/archive/d50d76daa670286dd6cacf3bcd80b5e4823fc8e1.zip" }
 echomimic-v2 = { workspace = true }
+
+[tool.setuptools.packages.find]
+where = ["src"] 
+
+[tool.setuptools.package-data]
+"*" = ["*.*"] 
