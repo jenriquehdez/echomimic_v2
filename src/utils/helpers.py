@@ -70,7 +70,6 @@ def get_video_pose(
         model_pose=model_pose_path,
         device=device,
     )
-    dwpose_detector.release_memory()
 
     detected_poses = [dwpose_detector(frm) for frm in frames]
     dwpose_detector.release_memory()
