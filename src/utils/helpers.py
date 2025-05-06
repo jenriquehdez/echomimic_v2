@@ -7,32 +7,15 @@ which is Licensed under the Apache License, Version 2.0.
 
 """
 
-import sys
-from utils.img_utils import (
-    pil_to_cv2,
-    cv2_to_pil,
-    center_crop_cv2,
-    pils_from_video,
-    save_videos_from_pils,
-    save_video_from_cv2_list,
-)
-from PIL import Image
-import cv2
-from IPython import embed
-import numpy as np
-import copy
-from utils.motion_utils import motion_sync
-import pathlib
-import torch
-import pickle
-from glob import glob
 import os
-from models.dwpose.dwpose_detector import DWposeDetector
-from models.dwpose.util import draw_pose
-import decord
-from tqdm import tqdm
-from moviepy.editor import AudioFileClip, VideoFileClip
 from multiprocessing.pool import ThreadPool
+
+import cv2
+import decord
+import numpy as np
+from moviepy.editor import VideoFileClip
+
+from models.dwpose.dwpose_detector import DWposeDetector
 
 
 def convert_fps(src_path, tgt_path, tgt_fps=24, tgt_sr=16000):
